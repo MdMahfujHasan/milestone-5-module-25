@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This</title>
+</head>
+<body>
+    <h1>About this</h1>
+    <p onclick="this.innerText = 'clicked'">this is a paragraph</p>
+    <script>
+        const myObj = {
+            name: 'Mahfuj Hasan',
+            getFullName: function(){
+                console.log(this);
+                return 'Md. ' + this.name;
+            }
+        }
+        // myObj.getFullName();
+        const anotherObj = {
+            name: 'Hasan Ali',
+        }
+        anotherObj.getFullName = myObj.getFullName;
+        console.log(anotherObj.getFullName);
+        myObj.getFullName();
+        anotherObj.getFullName();
+
+        function add(a, b){
+            console.log(this);
+            return a + b;
+        }
+        add(2,3); // there's nothing on left side of add --> window context
+
+        anotherObj.sum = add;
+        anotherObj.sum();
+
+        setTimeout(function(){
+            console.log(this);
+        }, 1000) // window context
+    </script>
+</body>
+</html>
